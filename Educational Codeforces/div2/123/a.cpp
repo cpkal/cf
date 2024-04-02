@@ -3,13 +3,18 @@
 using namespace std;
 
 void solve() {
-	int a, b, c; cin >> a >> b >> c;
-	if(a < b && b > c) {
-		cout << "PEAK" << endl;
-	} else if(a < b && b < c) {
-		cout << "STAIR" << endl;	
+	string s;
+	vector<char> lc;
+	if(isupper(s[0])) {
+		cout << "NO" << endl;
 	} else {
-		cout << "NONE" << endl;
+		for(int i=0; i < n; i++) {
+			if(islower(s[i])) {
+				lc.push_back(s);
+			} else {
+				
+			}
+		}
 	}
 }
 
