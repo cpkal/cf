@@ -3,18 +3,34 @@
 using namespace std;
 
 void solve() {
+	string alphabet = "abcdefghijklmnopqrstuvwxyz";
+	int ca = 1;
 	string s; cin >> s;
-	sort(s.begin(), s.end());
-	int i;
-	for(i = 1; i <= s.size() - 1; i++) {
-		if(s[i] - s[i - 1] != 1) break; 
-	}
-	if(s[0] != 'a') {
-		cout << "NO" << endl;
-	} else if(i == s.size()) {
-		cout << "YES" << endl;
+	int apos = s.find("a");
+	if(apos < 0) {
+		cout << "NO" << "\n";
 	} else {
-		cout << "NO" << endl;
+		int l = apos, r = l;
+		while(ca < s.size()) {
+			apos = s.find(alphabet[ca]);
+			if(apos < 0) {
+				break;
+			} else if(apos == l-1) {
+				l -= 1;
+			}else if(apos == r+1) {
+				r += 1;
+			} else {
+				break;
+			}
+			ca++;
+		}
+		if(s.size() == 1) {
+			cout << "YES" << "\n";
+		} else if(ca == s.size()) {
+			cout << "YES" << "\n";
+		} else {
+			cout << "NO" << "\n";
+		}
 	}
 }
 
