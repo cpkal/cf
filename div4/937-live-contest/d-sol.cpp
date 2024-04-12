@@ -1,37 +1,37 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-const int N = 10e5 + 20;
-vector<int> bd;
-bool dp[N];
-
-void solve() {
-	bd.push_back(1);
-	for(int i = 0; i < bd.size(); i++) {
-		if(10 * bd[i] >= N) break;
-		bd.push_back(10 * bd[i]);
-		bd.push_back(10 * bd[i] + 1);
-	}
-
-	dp[1] = 1;
-	for(int i = 2; i < N; i++) {
-		for(int x:bd) {
-			if(i % x == 0) {
-				dp[i] = dp[i] | dp[i % x];
-			}
-		}
-	}
-
-	int n;
-	cin >> n;
-	cout << (dp[n] ? "YES" : "NO") << endl;
-}
-
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int tt; cin >> tt;
-	while(tt--) solve();
-	return 0;
+    int tt; cin >> tt;
+    while(tt--) {
+        int bd[31];
+        int n; cin >> n;
+        for(int i = 2; i < 32; i++) {
+            bd[i - 1] = stoi(bitset<5>(i).to_string());
+        }
+        
+        // for(int i = 1; i < 31; i++) {
+        //     cout << bd[i] << endl;
+        // }
+        
+        for(int i = 30; i >= 1; i--) {
+            while(n % bd[i] == 0) {
+                n/=bd[i];
+            }
+        }
+        
+        // for(int i = 255; i >= 0; i--) {
+        //     while(!(n % bd[i])) {
+        //         n /= bd[i];
+        //     }
+        // }
+        
+        if(n == 1) {
+            cout << "YES\n";
+        } else {
+            cout << "NO\n";
+        }
+    }
+
+    return 0;
 }
